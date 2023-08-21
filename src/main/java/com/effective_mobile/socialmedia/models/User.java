@@ -3,12 +3,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import java.util.List;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
-
 @Entity
+@Data
 @Table(name = "users")
 public class User {
 
@@ -27,6 +23,7 @@ public class User {
     private String email;
 
     @Column(name = "role")
+    @Enumerated (value = EnumType.STRING)
     private String role;
 
     @OneToMany (mappedBy = "user",

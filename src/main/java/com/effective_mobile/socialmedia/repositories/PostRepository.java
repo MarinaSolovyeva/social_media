@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface PostRepository extends JpaRepository <Post, Long> {
-    @Query(value = "SELECT o FROM Task o WHERE o.user.id = :id")
+    @Query(value = "SELECT o FROM Post o WHERE o.user.id = :id")
     List<Post> findAllPostsByUser(@Param("id") Long id) ;
 
 }

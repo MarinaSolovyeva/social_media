@@ -1,6 +1,6 @@
 package com.effective_mobile.socialmedia.util;
 import com.effective_mobile.socialmedia.models.User;
-import com.effective_mobile.socialmedia.services.UserDetailService;
+import com.effective_mobile.socialmedia.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
@@ -10,11 +10,11 @@ import org.springframework.validation.Validator;
 @Component
 public class UserValidator implements Validator {
 
-    private final UserDetailService userDetailService;
+    private final UserService userService;
 
     @Autowired
-    public UserValidator(UserDetailService userDetailService) {
-        this.userDetailService = userDetailService;
+    public UserValidator(UserService userService) {
+        this.userService = userService;
     }
 
     @Override
@@ -26,7 +26,7 @@ public class UserValidator implements Validator {
     public void validate(Object o, Errors errors) {
         User user = (User) o;
         try {
-            userDetailService.loadUserByUsername(user.getUsername());
+            userService.loadUserByUsername(user.getUsername());
         } catch (UsernameNotFoundException ignored) {
             return;
         }

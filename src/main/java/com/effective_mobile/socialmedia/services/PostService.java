@@ -56,13 +56,6 @@ public class PostService {
     }
 
     @Transactional
-    public void deleteTask(Post post, String username) {
-        User user = userService.findByName(username);
-        List <Post> posts = user.getPosts();
-        posts.remove(post);
-    }
-
-    @Transactional
     public List<Post> getAllPostsByUser(User user) {
         List <Post> postList = postRepository.findAllPostsByUser(user.getId());
         return postList;
